@@ -93,8 +93,12 @@ async function ensureOffscreen() {
 
 async function runOcr(dataUrl) {
   await ensureOffscreen();
-  const res = await chrome.runtime.sendMessage({ type: 'OFFSCREEN_OCR', dataUrl });
-  if (!res?.ok) throw new Error(res?.error || 'OCR 失敗');
+  const timeout = new Promise((_, rej) =>
+    setTimeout(() => rej(new Error('OCR 逾時（60 秒）— 請開啟 chrome://extensions 點此擴充功能的「service worker」與 offscreen 文件檢查 console。')), 60000)
+  );
+  const send = chrome.runtime.sendMessage({ type: 'OFFSCREEN_OCR', dataUrl });
+  const res = await Promise.race([send, timeout]);
+  if (!res?.ok) throw new Error(res?.error || 'OCR 失敗（未知原因）');
   return res.text;
 }
 

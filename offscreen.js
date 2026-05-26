@@ -10,17 +10,22 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         );
       }
       const workerPath = chrome.runtime.getURL('vendor/worker.min.js');
-      const corePath = chrome.runtime.getURL('vendor/');
+      const corePath = chrome.runtime.getURL('vendor/tesseract-core.wasm.js');
       const langPath = chrome.runtime.getURL('vendor/');
 
+      console.log('[OCR] creating worker', { workerPath, corePath, langPath });
       const worker = await Tesseract.createWorker('eng', 1, {
         workerPath,
         corePath,
         langPath,
-        cacheMethod: 'none'
+        cacheMethod: 'none',
+        workerBlobURL: false,
+        logger: (m) => console.log('[OCR]', m)
       });
+      console.log('[OCR] worker ready, running recognize…');
       const { data } = await worker.recognize(msg.dataUrl);
       await worker.terminate();
+      console.log('[OCR] done:', data?.text);
       sendResponse({ ok: true, text: (data?.text || '').trim() });
     } catch (err) {
       console.error('[OCR offscreen]', err);

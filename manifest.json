@@ -15,6 +15,9 @@
     "https://generativelanguage.googleapis.com/*"
   ],
   "background": { "service_worker": "background.js" },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  },
   "action": { "default_popup": "popup/popup.html", "default_title": "OCR 單字本" },
   "options_page": "options/options.html",
   "commands": {
