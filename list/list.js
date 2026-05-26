@@ -2,10 +2,16 @@ const $grid = document.getElementById('grid');
 const $empty = document.getElementById('empty');
 const $count = document.getElementById('count');
 const $search = document.getElementById('search');
+const $sort = document.getElementById('sort');
+const $shuffle = document.getElementById('shuffle');
 const $export = document.getElementById('export');
 
 let words = [];
 let filter = '';
+let sortMode = localStorage.getItem('sortMode') || 'created';
+let randomSeed = Math.random();
+$sort.value = sortMode;
+$shuffle.hidden = sortMode !== 'random';
 
 async function load() {
   const data = await chrome.storage.local.get('words');
@@ -14,11 +20,26 @@ async function load() {
 }
 
 function sorted(list) {
-  return [...list].sort((a, b) => {
-    if (!!b.pinned !== !!a.pinned) return b.pinned ? 1 : -1;
-    if (a.pinned && b.pinned) return (b.pinnedAt || 0) - (a.pinnedAt || 0);
-    return (b.createdAt || 0) - (a.createdAt || 0);
-  });
+  const pinned = list.filter((w) => w.pinned);
+  const rest = list.filter((w) => !w.pinned);
+  pinned.sort((a, b) => (b.pinnedAt || 0) - (a.pinnedAt || 0));
+  if (sortMode === 'alpha') {
+    rest.sort((a, b) => a.word.localeCompare(b.word, 'en', { sensitivity: 'base' }));
+  } else if (sortMode === 'random') {
+    rest.sort((a, b) => hash(a.id + ':' + randomSeed) - hash(b.id + ':' + randomSeed));
+  } else {
+    rest.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+  }
+  return [...pinned, ...rest];
+}
+
+function hash(s) {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
 }
 
 function render() {
@@ -84,6 +105,19 @@ $grid.addEventListener('click', async (e) => {
 
 $search.addEventListener('input', () => {
   filter = $search.value;
+  render();
+});
+
+$sort.addEventListener('change', () => {
+  sortMode = $sort.value;
+  localStorage.setItem('sortMode', sortMode);
+  $shuffle.hidden = sortMode !== 'random';
+  if (sortMode === 'random') randomSeed = Math.random();
+  render();
+});
+
+$shuffle.addEventListener('click', () => {
+  randomSeed = Math.random();
   render();
 });
 
