@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <title>OCR 單字本</title>
+    <link rel="stylesheet" href="list.css" />
+  </head>
+  <body>
+    <header>
+      <h1>📒 我的單字本</h1>
+      <div class="actions">
+        <input id="search" type="search" placeholder="搜尋單字或翻譯…" />
+        <button id="export">匯出 JSON</button>
+        <span id="count" class="count"></span>
+      </div>
+    </header>
+    <main id="grid" class="grid"></main>
+    <div id="empty" class="empty" hidden>還沒有單字，去網頁上框選一個試試！</div>
+    <script src="list.js"></script>
+  </body>
+</html>

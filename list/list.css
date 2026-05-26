@@ -1,0 +1,53 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: system-ui, -apple-system, "Noto Sans TC", sans-serif;
+  background: #f6f7fb; color: #222;
+}
+header {
+  position: sticky; top: 0; background: #ffffffee; backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e6e8ef; padding: 14px 24px; z-index: 10;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+h1 { margin: 0; font-size: 20px; flex-shrink: 0; }
+.actions { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 280px; }
+#search {
+  flex: 1; min-width: 200px; padding: 8px 12px; border-radius: 8px;
+  border: 1px solid #ccd0d8; font-size: 14px; background: #fff;
+}
+button {
+  padding: 8px 14px; border-radius: 8px; border: 1px solid #ccd0d8; background: #fff;
+  font-size: 13px; cursor: pointer;
+}
+button:hover { background: #f0f4ff; }
+.count { font-size: 13px; color: #666; }
+.grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px; padding: 20px 24px;
+}
+.empty { text-align: center; color: #888; padding: 80px 20px; font-size: 15px; }
+.card {
+  background: #fff; border-radius: 12px; padding: 14px 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05); border: 1px solid #ececf2;
+  display: flex; flex-direction: column; gap: 6px; position: relative;
+}
+.card.pinned { border-color: #ffd089; background: #fffaf0; }
+.card .head { display: flex; align-items: baseline; gap: 8px; }
+.card .word { font-size: 19px; font-weight: 600; }
+.card .pos {
+  font-size: 11px; padding: 2px 8px; border-radius: 99px;
+  background: #eef2ff; color: #3a4b9a;
+}
+.card .trans { font-size: 15px; color: #2c3e50; }
+.card .ex { font-size: 13px; color: #333; font-style: italic; margin-top: 6px; }
+.card .ex-zh { font-size: 13px; color: #666; }
+.card .footer {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 10px; gap: 8px;
+}
+.card .date { font-size: 11px; color: #aaa; }
+.card .btns { display: flex; gap: 6px; }
+.card .btns button {
+  padding: 4px 8px; font-size: 12px; border-radius: 6px;
+}
+.card .btns button.pin.on { background: #ffd089; border-color: #f5b970; }
+.card .btns button.del:hover { background: #ffecec; border-color: #e88; color: #c0392b; }

@@ -1,0 +1,22 @@
+body {
+  width: 240px;
+  margin: 0;
+  padding: 14px;
+  font-family: system-ui, -apple-system, "Noto Sans TC", sans-serif;
+  background: #fafafa;
+  color: #222;
+}
+.title { font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+.btn {
+  display: block; width: 100%; padding: 9px 12px; margin-bottom: 8px;
+  border: 1px solid #ddd; border-radius: 8px; background: #fff;
+  font-size: 14px; cursor: pointer; text-align: left;
+}
+.btn:hover { background: #f0f4ff; border-color: #b9c9ff; }
+.btn.primary { background: #4f8cff; color: #fff; border-color: #4f8cff; }
+.btn.primary:hover { background: #3a78ee; }
+.hint { font-size: 11px; color: #888; margin-top: 8px; text-align: center; }
+kbd {
+  font-family: ui-monospace, Menlo, monospace; font-size: 10px;
+  background: #eee; border: 1px solid #ccc; border-radius: 3px; padding: 1px 4px;
+}

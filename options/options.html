@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <title>OCR 單字本 — 設定</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main>
+      <h1>設定</h1>
+
+      <section>
+        <label for="api-key">Google Gemini API Key</label>
+        <input id="api-key" type="password" autocomplete="off" placeholder="貼上 AIza..." />
+        <div class="row">
+          <button id="save" class="primary">儲存</button>
+          <button id="test">測試連線</button>
+          <button id="toggle-vis" type="button">顯示</button>
+        </div>
+        <div id="status" class="status"></div>
+        <p class="hint">
+          至 <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>
+          建立 API Key。Key 僅儲存於本機 <code>chrome.storage.local</code>。
+        </p>
+      </section>
+
+      <section>
+        <h2>使用方式</h2>
+        <ol>
+          <li>按 <kbd>Ctrl/⌘</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd> 或在頁面右鍵選「用 OCR 選取單字」</li>
+          <li>拖曳滑鼠框選螢幕上的英文單字或短語</li>
+          <li>翻譯卡片會浮現並自動加入單字本</li>
+        </ol>
+      </section>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>

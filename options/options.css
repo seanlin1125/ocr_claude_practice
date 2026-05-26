@@ -1,0 +1,26 @@
+body { font-family: system-ui, -apple-system, "Noto Sans TC", sans-serif; background: #f6f7fb; margin: 0; color: #222; }
+main { max-width: 640px; margin: 40px auto; padding: 28px 32px; background: #fff; border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,0.05); }
+h1 { margin: 0 0 18px; font-size: 22px; }
+h2 { font-size: 16px; margin: 28px 0 8px; }
+section { margin-bottom: 16px; }
+label { display: block; font-size: 13px; color: #555; margin-bottom: 6px; }
+input[type=password], input[type=text] {
+  width: 100%; box-sizing: border-box; padding: 9px 12px; font-size: 14px;
+  border: 1px solid #ccd0d8; border-radius: 8px; font-family: ui-monospace, Menlo, monospace;
+}
+.row { display: flex; gap: 8px; margin-top: 10px; }
+button {
+  padding: 8px 14px; border-radius: 8px; border: 1px solid #ccd0d8; background: #fff;
+  font-size: 13px; cursor: pointer;
+}
+button:hover { background: #f0f4ff; }
+button.primary { background: #4f8cff; color: #fff; border-color: #4f8cff; }
+button.primary:hover { background: #3a78ee; }
+.status { margin-top: 10px; font-size: 13px; min-height: 18px; }
+.status.ok { color: #1f8a3a; }
+.status.err { color: #c0392b; }
+.hint { font-size: 12px; color: #777; margin-top: 10px; }
+ol { padding-left: 20px; font-size: 14px; color: #444; }
+kbd { font-family: ui-monospace, Menlo, monospace; font-size: 11px; background: #eee; border: 1px solid #ccc; border-radius: 3px; padding: 1px 4px; }
+code { background: #eef; padding: 1px 4px; border-radius: 3px; font-size: 12px; }
+a { color: #4f8cff; }

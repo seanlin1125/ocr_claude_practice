@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "OCR 單字本",
+  "version": "0.1.0",
+  "description": "用滑鼠框選網頁上的英文單字，OCR 辨識後查詢中文翻譯並存成單字卡。",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "contextMenus",
+    "scripting",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "https://generativelanguage.googleapis.com/*"
+  ],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_popup": "popup/popup.html", "default_title": "OCR 單字本" },
+  "options_page": "options/options.html",
+  "commands": {
+    "start-ocr": {
+      "suggested_key": { "default": "Ctrl+Shift+O", "mac": "Command+Shift+O" },
+      "description": "啟動 OCR 框選"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/overlay.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["vendor/*", "list/*", "options/*", "offscreen.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
